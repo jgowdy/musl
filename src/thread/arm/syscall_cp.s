@@ -15,6 +15,7 @@ __syscall_cp_asm:
 __cp_begin:
 	ldr r0,[r0]
 	cmp r0,#0
+	it ne
 	bne __cp_cancel
 	mov r7,r1
 	mov r0,r2

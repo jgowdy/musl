@@ -43,6 +43,7 @@ __a_cas_dummy:
 	mov r3,r0
 	ldr r0,[r2]
 	subs r0,r3,r0
+	it eq
 	streq r1,[r2]
 	bx lr
 
@@ -55,7 +56,9 @@ __a_cas_v6:
 	mcr p15,0,r0,c7,c10,5
 1:	ldrex r0,[r2]
 	subs r0,r3,r0
+	it eq
 	strexeq r0,r1,[r2]
+	it eq
 	teqeq r0,#1
 	beq 1b
 	mcr p15,0,r0,c7,c10,5
@@ -70,7 +73,9 @@ __a_cas_v7:
 	dmb ish
 1:	ldrex r0,[r2]
 	subs r0,r3,r0
+	it eq
 	strexeq r0,r1,[r2]
+	it eq
 	teqeq r0,#1
 	beq 1b
 	dmb ish

@@ -7,6 +7,7 @@ _longjmp:
 longjmp:
 	mov ip,r0
 	movs r0,r1
+	it eq
 	moveq r0,#1
 	ldmia ip!, {v1,v2,v3,v4,v5,v6,sl,fp}
 	ldmia ip!, {r2,lr}
